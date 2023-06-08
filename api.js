@@ -18,8 +18,8 @@ export function getApi({ token }) {
         })
 }
 
-export function deleteApi({ token, id}) {
-   return fetch("https://webdev-hw-api.vercel.app/api/todos/" + id, {
+export function deleteApi({id, token}) {
+    return fetch("https://webdev-hw-api.vercel.app/api/todos/" + id, {
         method: "DELETE",
         headers: {
             Authorization: token
@@ -31,10 +31,10 @@ export function deleteApi({ token, id}) {
 }
 
 export function postApi({ text, token}) {
-   return fetch(host, {
+    return fetch(host, {
         method: "POST",
         body: JSON.stringify({
-            text
+            text,
         }),
         headers: {
             Authorization: token
