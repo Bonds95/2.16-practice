@@ -54,6 +54,10 @@ export function loginApi({login, password}) {
         }),
     })
         .then((response) => {
+            if (response.status === 400) {
+                throw new Error('неверный логин или пароль')
+                
+            }
             return response.json();
         })
 }

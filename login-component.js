@@ -15,13 +15,27 @@ export function renderLoginComponent({ appEl, fetchTodosAndRender, setToken }) {
     appEl.innerHTML = appHtml;
 
     document.getElementById('login-button').addEventListener('click', () => {
+        const login = document.getElementById('login-input').value
+        const password = document.getElementById('password-input').value
+
+        if (!login) {
+            alert('Введите логин')
+            return
+        }
+        
+        if (!password) {
+            alert('Введите пароль')
+            return
+        }
         loginApi({
-            login: 'admin',
-            password: 'admin'
+            login: login,
+            password: password
         }).then((user) => {
-            console.log(user);
             setToken(`Bearer ${user.user.token}`)
             fetchTodosAndRender()
+        }).catch(error=> {
+            alert(error.message)
+            
         })
     })
 }
